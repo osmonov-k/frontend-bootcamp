@@ -1,0 +1,102 @@
+/* Selector { property: value; } */
+
+/* Element selector */
+p {
+  color: blue;
+}
+
+/* Class selector (reusable) */
+.orange-btns {
+  background-color: orange;
+  color: white;
+  padding: 10px 40px;
+}
+
+/* ID selector (unique) */
+#header {
+  background-color: navy;
+  height: 80px;
+}
+
+/* Multiple selectors */
+h1,
+h2,
+h3 {
+  font-family: 'Arial', sans-serif;
+  color: red;
+}
+
+/* Selector Specificity 
+Specificity: element < class < id < inline style
+*/
+
+/* Specificity: 1 (element) */
+main {
+  color: orange;
+}
+
+/* Specificity: 10 (class) wins over element */
+.classOfMain {
+  color: blue;
+}
+
+/* Specificity: 100 (id) wins over class */
+#main-content {
+  color: red;
+}
+
+/* !important (overrides everything - avoid as much as possible*/
+main {
+  color: purple !important;
+}
+
+/* Combinator Selectors */
+
+/* Descendant selector (space) - any level deep */
+article p {
+  color: gray;
+}
+
+/* Child selector (>) - direct children only */
+ul > li {
+  list-style-type: square;
+}
+
+/* Adjacent sibling (+) - immediately after */
+h2 + h3 {
+  font-weight: bold; /* First paragraph after h2 */
+}
+
+/* General sibling (~) - all siblings after */
+h1 ~ p {
+  color: gray; /* All paragraphs after h2 */
+}
+
+/* Attribute selectors */
+
+/* Has attribute */
+input[required] {
+  border: 2px solid red;
+}
+
+/* Exact value */
+input[type='email'] {
+  background-color: #f0f0f0;
+}
+
+/* Contains value */
+a[href*='instagram'] {
+  color: blue;
+}
+
+/* Starts with value */
+a[href^='https'] {
+  padding-left: 20px;
+}
+
+/* Ends with value */
+a[href$='.pdf'] {
+  color: red;
+}
+
+/**/

@@ -1,0 +1,219 @@
+/*
+Part 1: Flexbox vs Grid
+
+Flexbox: One-dimensional (row OR column)
+┌──────┬──────┬──────┐
+│  1   │  2   │  3   │  ← Single row
+└──────┴──────┴──────┘
+
+Grid: Two-dimensional (rows AND columns)
+┌──────┬──────┬──────┐
+│  1   │  2   │  3   │  ← Multiple rows
+├──────┼──────┼──────┤    AND columns
+│  4   │  5   │  6   │
+└──────┴──────┴──────┘
+
+
+**Use Flexbox for:**
+- Navigation bars
+- Single row/column of items
+- Centering content
+- Card layouts (one direction)
+
+**Use Grid for:**
+- Page layouts
+- Photo galleries
+- Dashboard layouts
+- Magazine-style layouts
+- Complex 2D layouts
+
+Q: What's the differene between Flexbox and Grid ?
+**Answer:**
+```
+Flexbox vs Grid:
+
+Flexbox (1D):
+- One-dimensional layout (row OR column)
+- Content-first (size based on content)
+- Great for components (navbar, card row)
+- Flexible item sizing
+
+Grid (2D):
+- Two-dimensional layout (rows AND columns)
+- Layout-first (define structure first)
+- Great for page layouts
+- Precise control over placement
+
+When to use:
+- Flexbox: Small-scale layouts, components
+- Grid: Large-scale layouts, page structure
+- Both: Often used together!
+
+Example:
+.page-layout {
+  display: grid; 
+}
+
+.navbar {
+  display: flex; 
+}
+
+They complement each other, not compete.
+```
+*/
+
+/* Part 2: Grid Basics */
+html {
+  box-sizing: border-box;
+}
+
+.container1 div {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.container1 {
+  background-color: aquamarine;
+  display: grid; /* Enable Grid */
+
+  /* Gap between items */
+  gap: 20px; /* 20px gap between rows and columns */
+
+  /* Define columns*/
+  grid-template-columns: 200px 200px 200px; /* Define 3 columns, 200px each */
+
+  /* Define rows*/
+  grid-template-rows: 100px 100px; /* Define 2 rows, 100px each */
+}
+
+/* Fractional Units (fr) */
+
+.container2 div {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.container2 {
+  margin: 50px 0;
+  background-color: lightgreen;
+  display: grid; /* Enable Grid */
+  gap: 20px; /* 20px gap between rows and columns */
+
+  /* Fraction of available space */
+  grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
+
+  /* First column takes 2 parts, others 1 part each */
+  grid-template-columns: 2fr 1fr 1fr;
+
+  /* First column fixed, others flexible */
+  grid-template-columns: 200px 1fr 3fr;
+}
+
+/* Repeat Function */
+.container3 div {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.container3 {
+  margin: 50px 0;
+  background-color: lightgrey;
+  display: grid; /* Enable Grid */
+  gap: 20px; /* 20px gap between rows and columns */
+
+  /* Insted of: grid-template-columns: 1fr 1fr 1fr 1fr; */
+  grid-template-columns: repeat(4, 1fr); /*4 equal columns*/
+
+  /* Mix patterns */
+  grid-template-columns: repeat(3, 50px 1fr); /* 6 columns alternating*/
+
+  /* Auto-fill: create as many columns as fit */
+  grid-template-columns: repeat(Auto-fill, 200px);
+
+  /* Auto-fit: Similar but collapses emtpy tracks */
+  grid-template-columns: repeat(Auto-fit, minmax(250px, 1fr));
+}
+
+/*
+Q: What is the 'fr' unit in CSS Grid?
+**Answer:**
+```
+fr (fraction) represents a fraction of available space in the grid.
+
+How it works:
+grid-template-columns: 1fr 1fr 1fr;
+- Divides space into 3 equal parts
+- Each column gets 1/3 of available space
+
+Unequal fractions:
+grid-template-columns: 2fr 1fr 1fr;
+- Total: 4 fractions
+- First column: 2/4 (50%)
+- Other columns: 1/4 each (25%)
+
+Mixing units:
+grid-template-columns: 200px 1fr 2fr;
+1. Fixed sizes allocated first (200px)
+2. Remaining space divided by fractions
+3. 1fr gets 1/3, 2fr gets 2/3 of remainder
+
+Benefits:
+- Responsive by default
+- Clearer than percentages
+- Works with gap (percentages don't)
+
+Best practice:
+Use fr for flexible layouts, px for fixed sidebars.
+```
+*/
+
+/* Part 3: Advanced Grid Properties*/
+.container4 div {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.container4 {
+  margin: 50px 0;
+  background-color: lightsalmon;
+  display: grid; /* Enable Grid */
+  gap: 20px; /* 20px gap between rows and columns */
+
+  /* Column: minimum 200px, maximum 1fr */
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+
+  /* Useful patterns*/
+  grid-template-columns: minmax(200px, 300px) 1fr; /* Flexible sidebar */
+  grid-template-rows: auto minmax(500px, 1fr) auto; /* Header, content, footer */
+}
+
+/* Part 3: Alignment in Grid */
+
+.container5 div {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.container5 {
+  margin: 50px 0;
+  height: 400px;
+  background-color: lightyellow;
+  display: grid; /* Enable Grid */
+  gap: 20px; /* 20px gap between rows and columns */
+
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(2, 100px);
+
+  /* Align items in the grid */
+  justify-content: end; /* right */
+  justify-content: center; /* center */
+  justify-content: start; /* left */
+
+  /* Align items vertically */
+  align-content: center; /* center */
+  align-content: end; /* bottom */
+  align-content: start; /* top */
+
+  place-content: center; /* shorthand for align-content and justify-content */
+  place-content: end start; /* shorthand for align-content and justify-content */
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- Page header (logo, nav) -->
+    <header>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+      </nav>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <!-- Indedendent content  -->
+      <article>
+        <h1>My blog post</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus modi
+          soluta earum maiores sapiente ratione eveniet voluptatibus quisquam,
+          placeat amet eius odit porro in saepe reiciendis libero quos aperiam
+          exercitationem.
+        </p>
+      </article>
+      <!-- Generic section -->
+      <section>
+        <h2>Section title</h2>
+        <p>Section content...</p>
+      </section>
+    </main>
+
+    <!-- Page footer -->
+    <footer>
+      <p>&copy; 2026</p>
+    </footer>
+
+    <!-- Forms & Input elements -->
+
+    <form>
+      <!-- Text input -->
+      <label for="username">Username:</label>
+      <input type="text" id="username" required placeholder="Enter username" />
+
+      <!-- Email input (has built-in validation) -->
+      <label for="email">Email:</label>
+      <input type="email" id="email" required placeholder="user@example.com" />
+
+      <!-- Password input -->
+      <label for="password">Password:</label>
+      <input type="password" id="password" minlength="8" required />
+
+      <!-- Number input -->
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" min="18" max="100" />
+
+      <!-- Textarea-->
+      <label for="message">Message:</label>
+      <textarea
+        name="message"
+        id="message"
+        rows="4"
+        placeholder="Enter Your Message"
+      ></textarea>
+
+      <!-- Select dropdown-->
+      <label for="country">Country:</label>
+      <select name="country" id="country">
+        <option value="">Select a country</option>
+        <option value="us">United States</option>
+        <option value="uk">United Kingdom</option>
+        <option value="ca">Canada</option>
+      </select>
+
+      <!-- Radio buttons (single choice) -->
+      <fieldset>
+        <legend>Gender:</legend>
+        <label>
+          <input type="radio" name="gender" value="male" />
+          Male
+        </label>
+        <label>
+          <input type="radio" name="gender" value="femaile" />Femaile
+        </label>
+      </fieldset>
+
+      <!-- Checkboxes (multiple choices) -->
+      <fieldset>
+        <legend>Interests:</legend>
+        <label> <input type="checkbox" />Coding </label>
+        <label>
+          <input type="checkbox" name="Interests" value="coding" />Coding
+        </label>
+        <label>
+          <input type="checkbox" name="Interests" value="design" />Design
+        </label>
+        <label>
+          <input type="checkbox" name="Interests" value="marketing" />Marketing
+        </label>
+      </fieldset>
+
+      <button type="submit">Submat Form</button>
+    </form>
+    <!--Input types (HTML5)-->
+
+    <!--Date picker-->
+    <input type="date" name="birthday" />
+
+    <!--Time picker-->
+    <input type="time" name="appointment" />
+
+    <!--Color picker-->
+    <input type="color" name="favorite-color" />
+
+    <!--Range slider-->
+    <input type="range" min="0" max="100" name="volume" />
+
+    <!--File upload-->
+    <input type="file" name="resume" accept=".pdf,.doc,.docx" />
+
+    <!--phone number-->
+    <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+
+    <!--URL-->
+    Write your website
+    <input type="url" name="website" placeholder="https://example.com" />
+
+    <script src=""></script>
+  </body>
+</html>

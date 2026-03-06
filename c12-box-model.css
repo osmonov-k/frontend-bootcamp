@@ -1,0 +1,345 @@
+/* Part 2: The Box Model */
+
+/*
+┌─────────────────────────────────────┐
+│           MARGIN (transparent)      │
+│  ┌───────────────────────────────┐  │
+│  │     BORDER                    │  │
+│  │  ┌─────────────────────────┐  │  │
+│  │  │   PADDING               │  │  │
+│  │  │  ┌──────────────────┐   │  │  │
+│  │  │  │    CONTENT       │   │  │  │
+│  │  │  │   (text/images)  │   │  │  │
+│  │  │  └──────────────────┘   │  │  │
+│  │  └─────────────────────────┘  │  │
+│  └───────────────────────────────┘  │
+└─────────────────────────────────────┘
+*/
+body {
+  background-color: beige;
+}
+.box {
+  /* Content size*/
+  background-color: aquamarine;
+  width: 300px;
+  height: 200px;
+
+  /* Border */
+  border: 30px solid black; /*width | style | color*/
+  border-width: 3px;
+  border-style: dashed;
+  border-color: blueviolet;
+  border-radius: 10px;
+
+  /* Padding (inside border) */
+  padding: 20px; /*All sides*/
+  padding: 20px 5px; /* vertical | horizontal */
+  padding: 10px 20px 30px 40px; /* Top | Right | Bottom | Left (clockwise) */
+
+  /* Margin (outside border) */
+  margin: 40px;
+  margin: 10px auto; /* Vertical | Horizontal (auto centers) */
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 30px;
+  margin-bottom: 40px;
+}
+
+.section1 {
+  background-color: gray;
+  padding: 5px;
+}
+
+/* Box-Sizing Property */
+.box-content {
+  background-color: aquamarine;
+  box-sizing: content-box;
+  width: 300px;
+  padding: 20px;
+  border: 5px solid rgb(19, 16, 16);
+  /* Total width: 300width + (20*2)padding + (5*2)border = 350px */
+}
+/* Better: border-box */
+.box-content {
+  box-sizing: border-box;
+  width: 300px;
+  padding: 50px;
+  border: 10px solid black;
+  margin: 50px;
+  /* Total width = 300px (padding and border included) */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*
+Q: Explain the CSS box model. 
+
+**Answer:**
+```
+The box model defines how elements are sized and spaced:
+
+From inside out:
+1. Content: The actual content (text, images)
+2. Padding: Space between content and border (transparent)
+3. Border: Line around the padding
+4. Margin: Space outside the border (transparent)
+
+Two box-sizing modes:
+
+content-box (default):
+- width/height only applies to content
+- Padding and border are added
+- Total width = width + padding + border
+
+border-box (recommended):
+- width/height includes content + padding + border
+- Easier to calculate sizes
+- Total width = width
+
+Best practice:
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+Margin vs Padding:
+- Padding: Inside border, has background color
+- Margin: Outside border, transparent, can collapse
+*/
+
+/*
+Q: What is margin collapsing ?
+**Answer:**
+```
+Margin collapsing: When vertical margins of adjacent elements
+combine into a single margin.
+
+Example:
+<div style="margin-bottom: 30px;">Box 1</div>
+<div style="margin-top: 20px;">Box 2</div>
+
+Result: 30px gap (not 50px) - larger margin wins
+
+Rules:
+1. Only vertical margins collapse (not horizontal)
+2. Only adjacent elements in normal flow
+3. Larger margin value is used
+
+When margins DON'T collapse:
+- Floated elements
+- Absolutely positioned elements
+- Inline-block elements
+- Flex or grid items
+- Elements with padding/border between them
+
+Fix if needed:
+- Add padding or border between elements
+- Use flexbox/grid (doesn't collapse)
+- Add overflow: hidden to parent
+*/
+
+/* Part 3: Display Property */
+.block {
+  background-color: lightcyan;
+  display: block; /* Takes full width, starts on new line */
+  width: 50%; /* Can set width */
+  margin: 10px auto; /* Can center with margin */
+}
+/* Default for div, p, h1-h6, section, article. */
+
+.inline {
+  background-color: lightcoral;
+  display: inline; /* Only takes up as much width as needed, no line break */
+  /* Cannot set width or height */
+  /* Margin only affects horizontal spacing */
+}
+/* Default for span, img, input, a, etc. Does not start on new line */
+
+/* Inline-block: Behaves like inline but can set width/height */
+.inline-block {
+  background-color: lightgreen;
+  display: inline-block;
+  width: 150px; /* Can set dimensions */
+  height: 100px;
+  margin: 10px; /* Margin works on all sides */
+}
+/* Useful for: Buttons, navigation items, and etc */
+
+.hidden {
+  display: none; /* Element is removed from layout and not visible */
+}
+
+.vis-hidden {
+  background-color: aquamarine;
+  height: 100px;
+  visibility: hidden; /* Element takes up space but is not visible */
+}
+
+/* What's the difference between 'display: none' and 'visibility: hidden'? 
+
+**Answer:**
+```
+Both hide elements, but differently:
+
+display: none:
+- Removes element from layout completely
+- Takes up no space
+- Not accessible to screen readers
+- Can't be tabbed to
+
+visibility: hidden:
+- Element invisible but space remains
+- Layout preserved
+- Not accessible to screen readers
+- Can't be clicked or interacted with
+
+opacity: 0:
+- Element invisible but space remains
+- Still interactive (clickable)
+- Accessible to screen readers
+- Can be tabbed to
+
+When to use:
+- display: none → Completely remove from page
+- visibility: hidden → Hide but keep layout
+- opacity: 0 → Fade in/out with transitions
+```
+*/
+
+/* Part 4: CSS Units*/
+
+/* Pixels (px) - most common */
+.pixels {
+  width: 200px;
+  font-size: 16px;
+  padding: 10px;
+}
+/* Fixed size, same on all screens */
+
+/* Others (rarely used) */
+.other-units {
+  background-color: aqua;
+  width: 2in; /* Inches */
+  height: 2cm; /* Centimeters */
+  font-size: 12pt; /* Points (print) */
+}
+
+/* Relative units */
+/* em: relative to parent's font size */
+.parent {
+  font-size: 16px;
+}
+
+.child {
+  font-size: 2em; /* 2 * 16px = 32px */
+  padding: 1em; /* 32px (based on own font-size) */
+  background-color: lightblue;
+}
+
+/* rem: relative to root's font size */
+html {
+  font-size: 16px;
+}
+
+.rem-text {
+  font-size: 1.5rem; /* 1.5 * 16px = 24px */
+  padding: 0.5rem; /* 8px */
+  background-color: lightpink;
+  margin-top: 2rem; /* 32px */
+}
+
+/* %: relative to parent's dimension */
+.container {
+  width: 800px;
+  background-color: aqua;
+}
+
+.container-child {
+  background-color: green;
+  opacity: 50%;
+  width: 50%; /* 50% of 800px = 400px */
+  padding: 5%; /* 5% of 800px = 40px */
+  margin: 0px auto;
+}
+
+/* Viewport units */
+
+.hero {
+  height: 100vh; /* 100% of viewport height */
+  width: 100vw; /* 100% of viewport width */
+  background-color: orange;
+}
+
+.sidebar {
+  width: 20vw; /* 20% of viewport width */
+  background-color: lightblue;
+}
+
+/* Best practices */
+
+/* Root font size*/
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+/* Use rem for font sized */
+h1 {
+  font-size: 3rem;
+}
+p {
+  font-size: 1rem;
+}
+small {
+  font-size: 0.8rem;
+}
+
+/* Use rem or em for spacing - margins and padding */
+.button {
+  padding: 0.5rem 1rem; /* 8px 16px */
+  margin: 1em; /* 16px */
+}
+
+/* Use % for width */
+.container1 {
+  width: 80%; /* 80% of parent */
+}
+
+/* Use px for borders */
+
+.container {
+  border: 1px solid black;
+}
+
+/*
+Q: What's the difference between 'em' and 'rem' units in CSS?
+
+**Answer:**
+```
+Both are relative units, but with different reference points:
+
+em:
+- Relative to parent element's font-size
+- Compounds (nested ems multiply)
+- Used for: padding/margin based on font-size
+
+Example:
+.parent { font-size: 16px; }
+.child { font-size: 2em; } 
+.grandchild { font-size: 2em; } 
+rem (root em):
+- Relative to root (html) element's font-size
+- Does NOT compound
+- More predictable
+- Used for: typography, spacing
+
+Example:
+html { font-size: 16px; }
+.child { font-size: 2rem; } 
+.grandchild { font-size: 2rem; } 
+Best practice:
+- Use rem for font-sizes and spacing (predictable)
+- Use em for padding/margin that scales with text
+- Use % for widths
+- Use px for borders, small details
+*/

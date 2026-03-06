@@ -1,0 +1,348 @@
+.container {
+  display: flex; /* Enable Flexbox */
+  background-color: rebeccapurple;
+}
+
+.box {
+  flex: 0.5; /* Each box takes equal space */
+  background-color: aquamarine;
+}
+
+.box2 {
+  flex: 0.5;
+  background-color: red;
+}
+
+.box3 {
+  flex: 0.5;
+  background-color: blue;
+}
+
+/* 
+Q: What is Flexbox and when would you use it ?
+**Answer:**
+```
+Flexbox (Flexible Box Layout) is a CSS layout model for
+one-dimensional layouts (row or column).
+
+Key concepts:
+1. Flex container: Parent with display: flex
+2. Flex items: Direct children of container
+3. Main axis: Primary direction (default: horizontal)
+4. Cross axis: Perpendicular to main axis
+
+
+When to use:
+- Navigation bars
+- Centering elements
+- Card layouts (single row/column)
+- Form layouts
+- Equal-height columns
+
+When NOT to use:
+- Complex 2D grids (use CSS Grid instead)
+- Full page layouts (use Grid)
+- Simple linear layouts (regular flow might be enough)
+
+Main properties:
+- Container: display, flex-direction, justify-content, align-items
+- Items: flex-grow, flex-shrink, flex-basis, order
+```
+*/
+
+/* Part 2: Flex Container Properties */
+
+.container2 {
+  width: 200px;
+  background-color: aqua;
+  display: inline-flex; /* Flex container with inline behavior */
+}
+
+/* Flex Directions */
+
+.container3 {
+  width: 600px;
+  height: 400px;
+  background-color: yellowgreen;
+  display: flex;
+
+  /* Horizontal (default)*/
+  flex-direction: row; /* Default: horizontal left to right */
+  flex-direction: row-reverse; /* Horizontal right to left */
+
+  /* Vertical (default)*/
+  flex-direction: column; /* Vertical top to bottom */
+  flex-direction: column-reverse; /* Vertical bottom to top */
+}
+
+.cont3-box1 {
+  background-color: red;
+}
+.cont3-box2 {
+  background-color: gray;
+}
+.cont3-box3 {
+  background-color: brown;
+}
+
+/* Justify-content */
+.container4 {
+  display: flex;
+  margin-top: 50px;
+  width: 800px;
+  height: 200px;
+  background-color: lightcoral;
+
+  justify-content: flex-start; /* Default: items aligned to start of main axis */
+  justify-content: flex-end; /* Items aligned to end of main axis */
+  justify-content: space-between; /* Equal space between items */
+  justify-content: space-evenly; /* Equal space between items and edges */
+  justify-content: center; /* Items centered along main axis */
+  gap: 2rem;
+
+  align-items: flex-start; /* Align items to start of cross axis */
+  align-items: flex-end; /* Align items to end of cross axis */
+  align-items: stretch; /* Default: stretch items to fill cross axis */
+  align-items: center; /* Align items to center of cross axis */
+}
+
+.cont4-box1 {
+  background-color: red;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+.cont4-box2 {
+  background-color: gray;
+  border-radius: 10px;
+
+  padding: 0.5rem;
+}
+.cont4-box3 {
+  background-color: brown;
+  border-radius: 10px;
+
+  padding: 0.5rem;
+}
+
+.container5 {
+  display: flex;
+  margin-top: 50px;
+  width: 800px;
+  height: 200px;
+  background-color: lightcyan;
+
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem; /* Space between items */
+  align-items: center;
+}
+.cont5-box1 {
+  background-color: red;
+  height: 50px;
+  width: 100px;
+}
+.cont5-box2 {
+  background-color: gray;
+  height: 50px;
+  width: 100px;
+}
+.cont5-box3 {
+  background-color: brown;
+  height: 50px;
+  width: 100px;
+}
+
+/*
+Q: How do you center an element with Flexbox?
+**Answer:**
+```
+Flexbox makes centering trivial:
+Horizontal centering:
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+Vertical centering:
+.container {
+  display: flex;
+  align-items: center;
+  height: 100vh; 
+}
+
+Both (perfect center):
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+This works for any element, any size, any content.
+Before Flexbox, this required hacks like:
+- position: absolute + transform
+- Table display
+- Line-height tricks
+
+Flexbox made it simple and clean.
+
+*/
+
+/*
+What's the difference between 'justify-content' and 'align-items' in Flexbox?
+
+**Answer:**
+```
+They align items on different axes:
+
+justify-content:
+- Aligns items along the MAIN axis
+- If flex-direction: row → horizontal alignment
+- If flex-direction: column → vertical alignment
+- Values: flex-start, flex-end, center, space-between, etc.
+
+align-items:
+- Aligns items along the CROSS axis
+- If flex-direction: row → vertical alignment
+- If flex-direction: column → horizontal alignment
+- Values: flex-start, flex-end, center, stretch, baseline
+
+Example (row direction):
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  align-items: center;
+}
+
+Remember: Main axis follows flex-direction, cross axis is perpendicular.
+```
+*/
+
+/* Part 3: Flex Item Properties */
+
+.container6 {
+  display: flex;
+  margin-top: 50px;
+  width: 800px;
+  height: 100px;
+  background-color: lightgreen;
+  justify-content: center; /* Space between items */
+}
+
+.cont6-box1 {
+  background-color: red;
+
+  /* Flex grow: how much item grows relative to siblings */
+  flex-grow: 0; /* Default: item does not grow */
+  flex-grow: 2; /* Grow twice as much as siblings with 1 */
+  flex-grow: 1; /* Item grows to fill available space */
+
+  /* Flex shrink: How much item shrinks when space is tight */
+  flex-shrink: 1; /* Default: item can shrink if needed */
+  flex-shrink: 0; /* Item does not shrink, may overflow,
+  you have to give width to the child first */
+
+  /* Flex basis: Initial size before growing/shrinking */
+  flex-basis: auto; /* Default: Based on content  */
+
+  /* Shorthand: flex: grow shrink basis */
+  flex: 0 1 auto; /* Default */
+  flex: 1; /* Same as: 'flex: 1 1 0' (common pattern) 
+   Grow to fill space, shrink if needed, basis auto */
+}
+.cont6-box2 {
+  background-color: gray;
+  flex-basis: 100px; /* Start with 200px before growing/shrinking */
+}
+.cont6-box3 {
+  background-color: brown;
+  flex: 1 0 200px; /* Grow, don't shrink, start at 200px */
+}
+
+/* 
+Q: Explain 'flex: 1;' - what does it do ?
+**Answer:**
+```
+flex: 1 is shorthand for:
+- flex-grow: 1 (can grow)
+- flex-shrink: 1 (can shrink)
+- flex-basis: 0 (start from 0, ignore content size)
+
+What it means:
+- Item takes up equal share of available space
+- Ignores content size
+- All items with flex: 1 will be equal width/height
+
+Example:
+<div style="display: flex;">
+  <div style="flex: 1;">A</div>
+  <div style="flex: 1;">B</div>
+  <div style="flex: 1;">C</div>
+</div>
+
+Result: Three equal-width columns (33.33% each)
+
+Variations:
+- flex: 2 → Takes twice as much space
+- flex: 0 0 auto → Fixed size, don't grow/shrink
+- flex: 1 0 200px → Grow from 200px base
+
+Common pattern for "take remaining space":
+.sidebar { flex: 0 0 250px; } 
+.main { flex: 1; } 
+```
+*/
+
+/* Part 4: Navigation Bar Exercise*/
+
+.navigation-demo {
+  width: 100vw;
+  height: 100vh;
+  background-color: lightgoldenrodyellow;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2c3e50;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-menu a:hover {
+  background-color: #34495e;
+}
+
+.nav-cta {
+  margin-right: 1rem;
+  background-color: #3498db;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+.nav-cta:hover {
+  background-color: #2980b9;
+}
