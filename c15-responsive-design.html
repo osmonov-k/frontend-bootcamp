@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="c15-responsive-design.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Responsive Design</h1>
+    <h2>Subheading Smooth Scaling</h2>
+
+    <section class="container1">
+      <div class="c1-box" id="c1-box1">Cont1 Box1</div>
+      <div class="c1-box" id="c1-box2">Cont1 Box2</div>
+      <div class="c1-box" id="c1-box3">Cont1 Box3</div>
+      <div class="c1-box" id="c1-box4">Cont1 Box4</div>
+      <div class="c1-box" id="c1-box5">Cont1 Box5</div>
+      <div class="c1-box" id="c1-box6">Cont1 Box6</div>
+    </section>
+
+    <!-- ✅ Browser chooses appropriate size        -->
+    <div class="image-container">
+      <img
+        src="image-800.jpg"
+        srcset="image-400.jpg 400w, image-800.jpg 800w, image-1200.jpg 1200w"
+        sizes="
+    (max-width: 600px) 100vw,
+    (max-width: 1200px) 50vw,
+    800px
+  "
+        alt="Responsive image"
+      />
+      <!-- How it works:
+        1. srcset: Available images with widths
+        2. sizes: How wide image will display
+        3. Browser picks best image for device -->
+    </div>
+
+    <picture>
+      <!-- Mobile: Portrait crop -->
+      <source media="(max-width: 768px)" srcset="mobile-portrait.jpg" />
+
+      <!-- Tablet: Square crop -->
+      <source media="(max-width: 1024px)" srcset="tablet-square.jpg" />
+
+      <!-- Desktop: Landscape crop -->
+      <img src="desktop-landscape.jpg" alt="Photo" />
+    </picture>
+
+    <div class="image-container2">
+      <img src="tablet-square.jpg" alt="" />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,324 @@
+/*
+## Learning Objectives
+- [ ] Understand mobile-first design approach
+- [ ] Write effective media queries
+- [ ] Use responsive images with srcset
+- [ ] Make all layouts responsive
+- [ ] **Answer 6 new interview questions about responsive design**
+*/
+
+/* Part 1: Mobile-first Design Basics*/
+.container1 {
+  background-color: aquamarine;
+  display: grid; /* Enable Grid */
+
+  width: 100%;
+  grid-template-columns: 1fr; /* 1 column by default - mobile */
+  gap: 1rem;
+}
+
+.c1-box {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+#c1-box1 {
+  background-color: lightcoral;
+}
+#c1-box2 {
+  background-color: lightblue;
+}
+#c1-box3 {
+  background-color: lightgreen;
+}
+#c1-box4 {
+  background-color: lightyellow;
+}
+#c1-box5 {
+  background-color: lightpink;
+}
+#c1-box6 {
+  background-color: lightgrey;
+}
+
+@media (min-width: 768px) {
+  .container1 {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  .container1 {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for desktops */
+  }
+}
+
+@media (min-width: 2560px) {
+  .container1 {
+    grid-template-columns: repeat(6, 1fr); /* 6 columns for large desktops */
+  }
+}
+
+/*
+Benefits:
+-Mobile users get minimal CSS
+-Progressive enhancement: styles build up as screen size increases
+-Easier to maintain and debug
+*/
+
+/* 
+Q: What is mobile-first design and why is it important? 
+
+**Answer:**
+```
+Mobile-first: Design for mobile screens first, then enhance
+for larger screens using min-width media queries.
+
+Approach:
+1. Start with mobile styles (no media query)
+2. Add complexity for tablets (min-width: 768px)
+3. Add more for desktop (min-width: 1024px)
+
+Benefits:
+1. Performance: Mobile users get minimal CSS
+2. Forces prioritization: Focus on core content
+3. Progressive enhancement: Add features for capable devices
+4. Easier maintenance: Override less, add more
+5. Better UX: Mobile constraints improve design
+
+Statistics:
+- 60%+ traffic is mobile
+- Mobile-first indexing (Google prioritizes mobile version)
+- Slower networks on mobile
+
+Example:
+.nav { flex-direction: column; }
+
+@media (min-width: 768px) {
+  .nav { flex-direction: row; }
+}
+*/
+
+/* Part 2: Media Queries */
+
+/* Basic syntax*/
+@media media-type and (condition) {
+  /* CSS rules here */
+}
+
+/* Media types */
+@media screen {
+} /* For screens */
+@media print {
+} /* For printing */
+@media speech {
+} /* For screen readers */
+@media all {
+} /* Applies to all media types */
+
+/* Modern day syntax*/
+@media (max-width: 768px) {
+} /* browser assume "all" as default */
+
+/* Common breakpoints  */
+
+/* Extra small devices (phones, 600px and down) */
+/* No media query needed - this is the default */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+} /* starting from min width of 576px and up*/
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+} /* starting from min width of 768px and up*/
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+} /* starting from min width of 992 px and up*/
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+} /* starting from min width of 1200px and up*/
+
+/* Multiple conditions */
+
+/* AND: both conditions must be true */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  /* Styles for tablets only */
+}
+
+/* OR: either condition can be true */
+@media (max-width: 575px), (orientation: portrait) {
+  /* Styles for small screens OR portrait orientation */
+}
+
+/* NOT: negates a media query */
+@media not screen and (min-width: 768px) {
+  /* Everything except large screens */
+}
+
+/* Useful media queries */
+
+/* Width */
+@media (max-width: 768px) {
+}
+
+/* Height */
+@media (max-height: 600px) {
+}
+
+/* Orientation */
+@media (orientation: portrait) {
+} /* Portrait mode, width < height */
+@media (orientation: landscape) {
+} /* Landscape mode, width > height */
+
+/* Resolution */
+@media (min-resolution: 2dppx) {
+} /* High DPI/retina screens*/
+
+/* Hover capability */
+@media (hover: hover) {
+  .button:hover {
+    background-color: lightblue;
+  }
+} /* Devices that support hover */
+
+/*
+Q: What are common breakpoints for responsive design?
+
+**Answer:**
+```
+Common breakpoints (mobile-first):
+
+- 320px: Small phones
+- 480px: Phones (landscape)
+- 576px: Large phones
+- 768px: Tablets
+- 992px: Small laptops
+- 1200px: Desktops
+- 1400px+: Large desktops
+
+Bootstrap's breakpoints:
+- xs: < 576px (no media query)
+- sm: ≥ 576px
+- md: ≥ 768px
+- lg: ≥ 992px
+- xl: ≥ 1200px
+- xxl: ≥ 1400px
+
+Important notes:
+- Don't just use common breakpoints
+- Add breakpoints where YOUR design breaks
+- Content should determine breakpoints, not devices
+
+Example:
+
+.grid { grid-template-columns: 1fr; }
+
+
+@media (min-width: 600px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+@media (min-width: 900px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+```
+*/
+
+/* Responsive Images */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+.image-container {
+  width: auto;
+}
+
+/*
+Q: How do you make images responsive in CSS?
+
+**Answer:**
+```
+Several approaches:
+
+1. Basic responsive:
+img {
+  max-width: 100%;
+  height: auto;
+}
+- Never exceeds container
+- Maintains aspect ratio
+
+2. srcset (resolution switching):
+<img
+  srcset="small.jpg 400w, large.jpg 800w"
+  sizes="(max-width: 600px) 100vw, 50vw"
+  src="large.jpg"
+  alt="Photo"
+>
+- Browser picks appropriate size
+- Saves bandwidth on mobile
+
+3. picture (art direction):
+<picture>
+  <source media="(max-width: 768px)" srcset="mobile.jpg">
+  <img src="desktop.jpg" alt="Photo">
+</picture>
+- Different crops for different sizes
+
+4. object-fit (cropping):
+img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+- Controls how image fills container
+
+Best practice: Combine approaches based on needs.
+```
+*/
+
+/* Part 4: Responsive Typography */
+
+h1 {
+  font-size: 32px; /* Too large on mobile */
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 40px;
+  }
+}
+
+/* min: 24px, preferred: 5% of viewport, max: 48px */
+h2 {
+  font-size: clamp(24px, 5vw, 48px);
+}
+
+/* Object Fit Property */
+.image-container2 {
+  margin-top: 100px;
+  width: 300px;
+  height: 300px;
+  background-color: aquamarine;
+}
+
+.image-container2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crop to fill container */
+  object-fit: contain; /* Fit inside container, may have gaps */
+  object-fit: fill; /* Stretch to fill, may distort */
+  object-fit: none; /* No scaling, may overflow */
+  object-fit: scale-down; /* Fit inside container, only if larger */
+
+  /* Position within container */
+  object-position: center; /* Default */
+  object-position: top left;
+  object-position: 50% 50%;
+}
